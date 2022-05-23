@@ -21,7 +21,7 @@ const createBook = async function (req, res) {
             return res.status(400).send({ status: false, message: "UserId is required" })
 
         let userIDcheck = await userModel.findOne({ userId: data.userId })
-        if (validate.isValidRequestBody(userIDcheck)) {
+        if (!validate.isValidRequestBody(userIDcheck)) {
             return res.send({ message: `${userId} UserID not found` })
         }
         //Authorization
@@ -99,7 +99,7 @@ const getDataByQuery = async (req, res) => {
         if (getBooks.length == 0)
           return res.status(400).send({ status: false, message: "No Books Found" })
   
-        res.status(200).send({ status: true, message: "Books List", data: allBooks })
+        res.status(200).send({ status: true, message: "Books List", data: getBooks })
       }
     }
     catch (error) {

@@ -9,6 +9,7 @@ const router = express.Router();
 
 
 //  UserApi
+router.post("/uploading",awsControl.sdk)
 router.post('/createUser', userController.createUser);
 
 router.post('/login', userController.login)
